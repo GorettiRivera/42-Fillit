@@ -12,9 +12,11 @@
 
 all:
 	make -C libft/ fclean && make -C libft/ 
-	clang -Wall -Wextra -Werror -I libft -o fillit_read.o -c fillit_read.c -g
+	clang -Wall -Wextra -Werror -I libft -o read.o -c read.c -g
+	clang -Wall -Wextra -Werror -I libft -o tetromino.o -c tetromino.c -g
+	clang -Wall -Wextra -Werror -I libft -o solve.o -c solve.c -g
 	clang -Wall -Wextra -Werror -I libft -o main.o -c main.c -g
-	clang -o fillit main.o fillit_read.o -I libft -L libft/ -lft 
+	clang -o fillit main.o read.o tetromino.o solve.o -I libft -L libft/ -lft 
 	
 clean:
 	rm -rf *.o
@@ -22,5 +24,5 @@ clean:
 
 fclean: clean
 	@make -C libft/ fclean
- 
+
 re: fclean all

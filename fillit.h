@@ -23,7 +23,20 @@
 # define TETROMINO_MAX_TOTAL 26
 # define BUFFER_SIZE TETROMINO_SIZE * TETROMINO_MAX_TOTAL
 
-int		g_num_tets;
-char					**fillit_read(int fd);
+int		g_numTetris;
+typedef struct			s_tetromino
+{
+	char				letter;
+	int					x[4];
+	int					y[4];
+	int					width;
+	int					height;
+	struct s_tetromino	*next;
+}						t_tetromino;
+
+char					**read_file(int fd);
+char					**fillit_solve(t_tetromino *tet);
+char					**create_map(int size);
+t_tetromino				*tetromino_map(char **map);
 
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit_read.c                                      :+:      :+:    :+:   */
+/*   read.c                                     	    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,34 @@
 
 #include "fillit.h"
 
-static int	fillit_valid_characters(char *tetromino)
+char		**create_map(int size)
+{
+	char	**map;
+	int		row;
+	int		col;
+
+	if (!(map = (char **)malloc(sizeof(char *) * size)))
+		return (NULL);
+	row = 0;
+	while (row < size)
+	{
+		if (!(map[row] = (char *)malloc(sizeof(char) * size + 1)))
+			return (NULL);
+		row += 1;
+	}
+	row = 0;
+	while (row < size)
+	{
+		col = 0;
+		while (col < size)
+			map[row][col++] = '.';
+		map[row][col] = '\0';
+		row += 1;
+	}
+	return (map);
+}
+
+static int	validate_characters(char *tetromino)
 {
 	int		i;
 	int		height;
@@ -41,7 +68,7 @@ static int	fillit_valid_characters(char *tetromino)
 	return (0);
 }
 
-static int	fillit_valid_tetromino(char **tetromino)
+static int	validate_tetromino(char **tetromino)
 {
 	int		cnt;
 	int		row;
@@ -69,15 +96,15 @@ static int	fillit_valid_tetromino(char **tetromino)
 	return (0);
 }
 
-static int	fillit_valid(char *map)
+static int	validate_input(char *map)
 {
-	if (fillit_valid_characters(map))
-		if (fillit_valid_tetromino((ft_strsplit(map, '\n'))))
+	if (validate_characters(map))
+		if (validate_tetromino((ft_strsplit(map, '\n'))))
 			return (1);
 	return (0);
 }
 
-char		**fillit_read(int fd)
+char		**read_file(int fd)
 {
 	int		i;
 	char	**map;
@@ -92,10 +119,10 @@ char		**fillit_read(int fd)
 		ft_bzero(map[i], TETROMINO_SIZE);
 		if (!(read(fd, map[i], TETROMINO_SIZE)))
 			return (map);
-		if (!(fillit_valid(map[i])))
+		if (!(validate_input(map[i])))
 			return (NULL);
 		i += 1;
-		g_num_tets = i;
+		g_numTetris = i;
 	}
 	return (NULL);
 }
