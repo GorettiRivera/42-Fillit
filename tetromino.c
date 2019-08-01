@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/24 09:26:31 by mrivera-          #+#    #+#             */
-/*   Updated: 2019/07/24 10:58:08 by mrivera-         ###   ########.fr       */
+/*   Created: 2019/07/25 09:26:31 by mrivera-          #+#    #+#             */
+/*   Updated: 2019/08/01 09:54:26 by mrivera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static char				***split_tetromino(char **map)
 	char	***fullmap;
 
 	i = 0;
-	if (!(fullmap = (char ***)malloc(sizeof(char **) * g_numTetris + 1)))
+	if (!(fullmap = (char ***)malloc(sizeof(char **) * g_num_tetris + 1)))
 		return (NULL);
-	while (i < g_numTetris)
+	while (i < g_num_tetris)
 	{
 		fullmap[i] = ft_strsplit(map[i], '\n');
 		i += 1;
@@ -83,7 +83,7 @@ static t_tetromino		*create_tetrominos(char ***fullmap, \
 
 	head = tet;
 	counter[0] = -1;
-	while (++counter[0] < g_numTetris)
+	while (++counter[0] < g_num_tetris)
 	{
 		counter[3] = 0;
 		counter[1] = -1;
@@ -114,9 +114,9 @@ t_tetromino				*tetromino_map(char **map)
 
 	if (!(counter = (int *)malloc(sizeof(int) * 4)))
 		return (NULL);
-	if (!(fullmap = (char ***)malloc(sizeof(char **) * g_numTetris + 1)))
+	if (!(fullmap = (char ***)malloc(sizeof(char **) * g_num_tetris + 1)))
 		return (NULL);
-	tetromino = new_tetrominos(g_numTetris);
+	tetromino = new_tetrominos(g_num_tetris);
 	fullmap = split_tetromino(map);
 	return (create_tetrominos(fullmap, tetromino, 'A', counter));
 }

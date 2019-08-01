@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrivera- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 13:26:20 by mrivera-          #+#    #+#             */
-/*   Updated: 2019/05/22 11:23:51 by mrivera-         ###   ########.fr       */
+/*   Updated: 2019/08/01 09:58:14 by mrivera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ char				*ft_strtrim(char const *s);
 int					ft_strwhitespace(char c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-double					ft_sqrt(double x);
-size_t					ft_wordcount(const char *s, char c);
-size_t					ft_wordlen(const char *s, char c);
+double				ft_sqrt(double x);
+size_t				ft_wordcount(const char *s, char c);
+size_t				ft_wordlen(const char *s, char c);
 
 typedef	struct		s_list
 {

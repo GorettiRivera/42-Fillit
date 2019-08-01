@@ -6,7 +6,7 @@
 #    By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/24 09:26:55 by mrivera-          #+#    #+#              #
-#    Updated: 2019/07/24 10:16:30 by mrivera-         ###   ########.fr        #
+#    Updated: 2019/08/01 10:01:14 by mrivera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,6 @@ clean:
 	rm -rf fillit
 
 fclean: clean
-	@make -C libft/ fclean
+	make -C libft/ fclean
 
 re: fclean all

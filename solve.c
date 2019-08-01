@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/24 09:26:31 by mrivera-          #+#    #+#             */
-/*   Updated: 2019/07/24 10:58:08 by mrivera-         ###   ########.fr       */
+/*   Created: 2019/07/25 09:26:31 by mrivera-          #+#    #+#             */
+/*   Updated: 2019/08/01 09:54:26 by mrivera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	set_tetromino(t_tetromino *tet, char **map, int y, int x)
+void		set_tetromino(t_tetromino *tet, char **map, int y, int x)
 {
 	int		row;
 	int		col;
@@ -36,7 +36,7 @@ static void	set_tetromino(t_tetromino *tet, char **map, int y, int x)
 	}
 }
 
-static int	check_placement(t_tetromino *tet, char **map, int y, int x)
+int			check_placement(t_tetromino *tet, char **map, int y, int x)
 {
 	int		row;
 	int		col;
@@ -63,11 +63,11 @@ static int	check_placement(t_tetromino *tet, char **map, int y, int x)
 	return (1);
 }
 
-static void	move_tetromino_upperleft(t_tetromino *tet)
+void		move_tetromino_upperleft(t_tetromino *tet)
 {
-	int			i;
-	int			pos_x;
-	int			pos_y;
+	int		i;
+	int		pos_x;
+	int		pos_y;
 
 	while (tet)
 	{
@@ -91,7 +91,7 @@ static void	move_tetromino_upperleft(t_tetromino *tet)
 	}
 }
 
-static int	solve_map(char **map, t_tetromino *tet, int size)
+int			solve_map(char **map, t_tetromino *tet, int size)
 {
 	int		x;
 	int		y;
@@ -126,7 +126,7 @@ char		**fillit_solve(t_tetromino *tet)
 
 	if (!tet)
 		return (NULL);
-	size = ft_sqrt(g_numTetris * SIZE);
+	size = ft_sqrt(g_num_tetris * SIZE);
 	map = create_map(size);
 	move_tetromino_upperleft(tet);
 	while (!solve_map(map, tet, size))

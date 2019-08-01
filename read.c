@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                     	    :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/24 09:26:43 by mrivera-          #+#    #+#             */
-/*   Updated: 2019/07/24 11:13:56 by mrivera-         ###   ########.fr       */
+/*   Created: 2019/07/24 09:42:39 by mrivera-          #+#    #+#             */
+/*   Updated: 2019/08/01 09:54:26 by mrivera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char		**create_map(int size)
 	return (map);
 }
 
-static int	validate_characters(char *tetromino)
+int			validate_characters(char *tetromino)
 {
 	int		i;
 	int		height;
@@ -68,7 +68,7 @@ static int	validate_characters(char *tetromino)
 	return (0);
 }
 
-static int	validate_tetromino(char **tetromino)
+int			validate_tetromino(char **tetromino)
 {
 	int		cnt;
 	int		row;
@@ -96,7 +96,7 @@ static int	validate_tetromino(char **tetromino)
 	return (0);
 }
 
-static int	validate_input(char *map)
+int			validate_input(char *map)
 {
 	if (validate_characters(map))
 		if (validate_tetromino((ft_strsplit(map, '\n'))))
@@ -122,7 +122,7 @@ char		**read_file(int fd)
 		if (!(validate_input(map[i])))
 			return (NULL);
 		i += 1;
-		g_numTetris = i;
+		g_num_tetris = i;
 	}
 	return (NULL);
 }

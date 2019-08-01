@@ -6,7 +6,7 @@
 /*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 09:27:02 by mrivera-          #+#    #+#             */
-/*   Updated: 2019/07/24 10:49:51 by mrivera-         ###   ########.fr       */
+/*   Updated: 2019/08/01 09:51:18 by mrivera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define TETROMINO_MAX_TOTAL 26
 # define BUFFER_SIZE TETROMINO_SIZE * TETROMINO_MAX_TOTAL
 
-int		g_numTetris;
+int						g_num_tetris;
 typedef struct			s_tetromino
 {
 	char				letter;
