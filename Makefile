@@ -6,23 +6,30 @@
 #    By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/24 09:26:55 by mrivera-          #+#    #+#              #
-#    Updated: 2019/08/01 10:01:14 by mrivera-         ###   ########.fr        #
+#    Updated: 2019/08/01 11:45:46 by mrivera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	make -C libft/ fclean && make -C libft/ 
-	clang -Wall -Wextra -Werror -I libft -o read.o -c read.c -g
-	clang -Wall -Wextra -Werror -I libft -o tetromino.o -c tetromino.c -g
-	clang -Wall -Wextra -Werror -I libft -o solve.o -c solve.c -g
-	clang -Wall -Wextra -Werror -I libft -o main.o -c main.c -g
-	clang -o fillit main.o read.o tetromino.o solve.o -I libft -L libft/ -lft 
-	
+NAME = fillit
+CC = clang
+FLAGS = -Wall -Wextra -Werror
+INCLUDES = libft
+SRCS = main.c read.c tetromino.c solve.c 
+OBJS = *.o
+LIB_DIR = libft/
+
+$(NAME):
+	make -C $(LIB_DIR) fclean && make -C $(LIB_DIR)
+	$(CC) $(FLAGS) -I $(INCLUDES) -c $(SRCS)
+	$(CC) -o $(NAME) $(OBJS) -I $(INCLUDES) -L $(LIB_DIR) -lft
+
+all: $(NAME)
+
 clean:
-	rm -rf *.o
-	rm -rf fillit
+	rm -rf $(OBJS)
+	rm -rf $(NAME)
 
 fclean: clean
-	make -C libft/ fclean
-
-re: fclean all
+	make -C $(LIB_DIR) fclean
+	
+re:	fclean all
