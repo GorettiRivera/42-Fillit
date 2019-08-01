@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/24 09:26:31 by mrivera-          #+#    #+#             */
-/*   Updated: 2019/08/01 09:54:26 by mrivera-         ###   ########.fr       */
+/*   Created: 2019/07/24 09:26:31 by copinto-          #+#    #+#             */
+/*   Updated: 2019/08/01 12:04:53 by mrivera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				main(int argc, char *argv[])
 			ft_memdel((void **)map);
 		}
 		else
-			ft_putstr("Error\n");
+			ft_putstr("error\n");
 		close(fd);
 	}
 	else
