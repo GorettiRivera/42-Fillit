@@ -30,19 +30,19 @@ int				main(int argc, char *argv[])
 {
 	int			fd;
 	char		**map;
-	t_tetromino *tetrominos;
+	t_tetrimino *tetriminos;
 
 	if (argc == 2)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			ft_putstr("error\n");
 		else if ((map = read_file(fd)) && (ft_strlen(map[0])) && \
-				(!map[g_num_tetris - 1][TETROMINO_SIZE - 1]))
+				(!map[g_num_tetris - 1][TETRIMINO_SIZE - 1]))
 		{
-			tetrominos = tetromino_map(map);
-			map = fillit_solve(tetrominos);
+			tetriminos = tetrimino_map(map);
+			map = fillit_solve(tetriminos);
 			print_map(map);
-			free(tetrominos);
+			free(tetriminos);
 			ft_memdel((void **)map);
 		}
 		else

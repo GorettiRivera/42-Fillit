@@ -14,7 +14,7 @@ NAME = fillit
 CC = clang
 FLAGS = -Wall -Wextra -Werror
 INCLUDES = libft
-SRCS = main.c read.c tetromino.c solve.c 
+SRCS = main.c read.c tetrimino.c solve.c 
 OBJS = *.o
 LIB_DIR = libft/
 

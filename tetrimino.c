@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetromino.c                                        :+:      :+:    :+:   */
+/*   tetrimino.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrivera- <mrivera-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-static void				set_dimensions(t_tetromino *tet)
+static void				set_dimensions(t_tetrimino *tet)
 {
 	int		row;
 	int		col;
@@ -40,7 +40,7 @@ static void				set_dimensions(t_tetromino *tet)
 	tet->height = (height / 4);
 }
 
-static char				***split_tetromino(char **map)
+static char				***split_tetrimino(char **map)
 {
 	int		i;
 	char	***fullmap;
@@ -56,30 +56,30 @@ static char				***split_tetromino(char **map)
 	return (fullmap);
 }
 
-static t_tetromino		*new_tetrominos(int size)
+static t_tetrimino		*new_tetriminos(int size)
 {
 	int			i;
-	t_tetromino	*new;
-	t_tetromino *head;
+	t_tetrimino	*new;
+	t_tetrimino *head;
 
-	if (!(new = (t_tetromino *)malloc(sizeof(t_tetromino) + 1)))
+	if (!(new = (t_tetrimino *)malloc(sizeof(t_tetrimino) + 1)))
 		return (NULL);
 	head = new;
 	i = 0;
 	while (i++ < size)
 	{
-		if (!(new->next = (t_tetromino *)malloc(sizeof(t_tetromino) + 1)))
+		if (!(new->next = (t_tetrimino *)malloc(sizeof(t_tetrimino) + 1)))
 			return (NULL);
 		new = new->next;
 	}
-	ft_memset(new, 0, (sizeof(t_tetromino) + 1));
+	ft_memset(new, 0, (sizeof(t_tetrimino) + 1));
 	return (head);
 }
 
-static t_tetromino		*create_tetrominos(char ***fullmap, \
-						t_tetromino *tet, char letter, int *counter)
+static t_tetrimino		*create_tetriminos(char ***fullmap, \
+						t_tetrimino *tet, char letter, int *counter)
 {
-	t_tetromino *head;
+	t_tetrimino *head;
 
 	head = tet;
 	counter[0] = -1;
@@ -106,17 +106,17 @@ static t_tetromino		*create_tetrominos(char ***fullmap, \
 	return (head);
 }
 
-t_tetromino				*tetromino_map(char **map)
+t_tetrimino				*tetrimino_map(char **map)
 {
 	int				*counter;
 	char			***fullmap;
-	t_tetromino		*tetromino;
+	t_tetrimino		*tetrimino;
 
 	if (!(counter = (int *)malloc(sizeof(int) * 4)))
 		return (NULL);
 	if (!(fullmap = (char ***)malloc(sizeof(char **) * g_num_tetris + 1)))
 		return (NULL);
-	tetromino = new_tetrominos(g_num_tetris);
-	fullmap = split_tetromino(map);
-	return (create_tetrominos(fullmap, tetromino, 'A', counter));
+	tetrimino = new_tetriminos(g_num_tetris);
+	fullmap = split_tetrimino(map);
+	return (create_tetriminos(fullmap, tetrimino, 'A', counter));
 }

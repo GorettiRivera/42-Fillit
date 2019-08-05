@@ -19,24 +19,24 @@
 # include "libft/libft.h"
 
 # define SIZE 4
-# define TETROMINO_SIZE 21
-# define TETROMINO_MAX_TOTAL 26
-# define BUFFER_SIZE TETROMINO_SIZE * TETROMINO_MAX_TOTAL
+# define TETRIMINO_SIZE 21
+# define TETRIMINO_MAX_TOTAL 26
+# define BUFFER_SIZE TETRIMINO_SIZE * TETRIMINO_MAX_TOTAL
 
 int						g_num_tetris;
-typedef struct			s_tetromino
+typedef struct			s_tetrimino
 {
 	char				letter;
 	int					x[4];
 	int					y[4];
 	int					width;
 	int					height;
-	struct s_tetromino	*next;
-}						t_tetromino;
+	struct s_tetrimino	*next;
+}						t_tetrimino;
 
 char					**read_file(int fd);
-char					**fillit_solve(t_tetromino *tet);
+char					**fillit_solve(t_tetrimino *tet);
 char					**create_map(int size);
-t_tetromino				*tetromino_map(char **map);
+t_tetrimino				*tetrimino_map(char **map);
 
 #endif

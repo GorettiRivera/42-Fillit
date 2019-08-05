@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-void		set_tetromino(t_tetromino *tet, char **map, int y, int x)
+void		set_tetrimino(t_tetrimino *tet, char **map, int y, int x)
 {
 	int		row;
 	int		col;
@@ -36,7 +36,7 @@ void		set_tetromino(t_tetromino *tet, char **map, int y, int x)
 	}
 }
 
-int			check_placement(t_tetromino *tet, char **map, int y, int x)
+int			check_placement(t_tetrimino *tet, char **map, int y, int x)
 {
 	int		row;
 	int		col;
@@ -59,11 +59,11 @@ int			check_placement(t_tetromino *tet, char **map, int y, int x)
 		}
 		col += 1;
 	}
-	set_tetromino(tet, map, y, x);
+	set_tetrimino(tet, map, y, x);
 	return (1);
 }
 
-void		move_tetromino_upperleft(t_tetromino *tet)
+void		move_tetrimino_upperleft(t_tetrimino *tet)
 {
 	int		i;
 	int		pos_x;
@@ -91,7 +91,7 @@ void		move_tetromino_upperleft(t_tetromino *tet)
 	}
 }
 
-int			solve_map(char **map, t_tetromino *tet, int size)
+int			solve_map(char **map, t_tetrimino *tet, int size)
 {
 	int		x;
 	int		y;
@@ -111,7 +111,7 @@ int			solve_map(char **map, t_tetromino *tet, int size)
 				if (solve_map(map, tet->next, size))
 					return (1);
 				tet->letter = '.';
-				set_tetromino(tet, map, y, x);
+				set_tetrimino(tet, map, y, x);
 				tet->letter = letter;
 			}
 		}
@@ -119,7 +119,7 @@ int			solve_map(char **map, t_tetromino *tet, int size)
 	return (0);
 }
 
-char		**fillit_solve(t_tetromino *tet)
+char		**fillit_solve(t_tetrimino *tet)
 {
 	char	**map;
 	int		size;
@@ -128,7 +128,7 @@ char		**fillit_solve(t_tetromino *tet)
 		return (NULL);
 	size = ft_sqrt(g_num_tetris * SIZE);
 	map = create_map(size);
-	move_tetromino_upperleft(tet);
+	move_tetrimino_upperleft(tet);
 	while (!solve_map(map, tet, size))
 	{
 		ft_memdel((void **)map);

@@ -39,7 +39,7 @@ char		**create_map(int size)
 	return (map);
 }
 
-int			validate_characters(char *tetromino)
+int			validate_characters(char *tetrimino)
 {
 	int		i;
 	int		height;
@@ -50,25 +50,25 @@ int			validate_characters(char *tetromino)
 	blocks = 0;
 	characters = 0;
 	height = 0;
-	while ((tetromino[i] == '.' || tetromino[i] == '#' || \
-		tetromino[i] == '\n') && tetromino[i] && (height != SIZE))
+	while ((tetrimino[i] == '.' || tetrimino[i] == '#' || \
+		tetrimino[i] == '\n') && tetrimino[i] && (height != SIZE))
 	{
-		if (tetromino[i] == '.' || tetromino[i] == '#')
+		if (tetrimino[i] == '.' || tetrimino[i] == '#')
 		{
-			if (tetromino[i] == '#')
+			if (tetrimino[i] == '#')
 				blocks += 1;
 			characters += 1;
 		}
-		if (tetromino[i++] == '\n')
+		if (tetrimino[i++] == '\n')
 			height += 1;
 	}
 	if (((characters) == SIZE * SIZE) && (height == SIZE) && \
-		(blocks == SIZE) && (tetromino[i] == '\n' || tetromino[i] == '\0'))
+		(blocks == SIZE) && (tetrimino[i] == '\n' || tetrimino[i] == '\0'))
 		return (1);
 	return (0);
 }
 
-int			validate_tetromino(char **tetromino)
+int			validate_tetrimino(char **tetrimino)
 {
 	int		cnt;
 	int		row;
@@ -81,14 +81,14 @@ int			validate_tetromino(char **tetromino)
 		col = -1;
 		while (SIZE > ++col)
 		{
-			if (tetromino[row][col] == '#' && row < 3)
-				tetromino[row + 1][col] == '#' ? cnt++ : cnt;
-			if (tetromino[row][col] == '#' && row > 0)
-				tetromino[row - 1][col] == '#' ? cnt++ : cnt;
-			if (tetromino[row][col] == '#' && col < 3)
-				tetromino[row][col + 1] == '#' ? cnt++ : cnt;
-			if (tetromino[row][col] == '#' && col > 0)
-				tetromino[row][col - 1] == '#' ? cnt++ : cnt;
+			if (tetrimino[row][col] == '#' && row < 3)
+				tetrimino[row + 1][col] == '#' ? cnt++ : cnt;
+			if (tetrimino[row][col] == '#' && row > 0)
+				tetrimino[row - 1][col] == '#' ? cnt++ : cnt;
+			if (tetrimino[row][col] == '#' && col < 3)
+				tetrimino[row][col + 1] == '#' ? cnt++ : cnt;
+			if (tetrimino[row][col] == '#' && col > 0)
+				tetrimino[row][col - 1] == '#' ? cnt++ : cnt;
 		}
 	}
 	if (cnt == 6 || cnt == 8)
@@ -99,7 +99,7 @@ int			validate_tetromino(char **tetromino)
 int			validate_input(char *map)
 {
 	if (validate_characters(map))
-		if (validate_tetromino((ft_strsplit(map, '\n'))))
+		if (validate_tetrimino((ft_strsplit(map, '\n'))))
 			return (1);
 	return (0);
 }
@@ -112,12 +112,12 @@ char		**read_file(int fd)
 	i = 0;
 	if (!(map = (char **)malloc(sizeof(char *) * BUFFER_SIZE)))
 		return (NULL);
-	while (i < TETROMINO_MAX_TOTAL)
+	while (i < TETRIMINO_MAX_TOTAL)
 	{
-		if (!(map[i] = (char *)malloc(sizeof(char) * TETROMINO_SIZE)))
+		if (!(map[i] = (char *)malloc(sizeof(char) * TETRIMINO_SIZE)))
 			return (NULL);
-		ft_bzero(map[i], TETROMINO_SIZE);
-		if (!(read(fd, map[i], TETROMINO_SIZE)))
+		ft_bzero(map[i], TETRIMINO_SIZE);
+		if (!(read(fd, map[i], TETRIMINO_SIZE)))
 			return (map);
 		if (!(validate_input(map[i])))
 			return (NULL);
