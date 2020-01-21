@@ -4,26 +4,26 @@ This projects seeks in discovering and/or familiarizing a recurring problematic 
 ## The Problem
 A Tetrimino block is a shape made up of 4 consecutive characters. You’ve probably seen Tetrominoes in the popular game, Tetris. For the purpose of this puzzle, Tetrominoes are considered fixed, meaning that they cannot be rotated and there are a total of 19 possible pieces that can be provided as input, as pictured below:
 
-![](piezas.png)
+![](resources/piezas.png)
 
 The goal of the puzzle is to find the smallest possible square board that the tetrominoes can fit in. Below is an examples of input and the desired solutions:
 
-![](examples.png)
+![](resources/examples.png)
 
 Note that when there are multiple solutions possible within the same size square, the solution with the pieces placed in the order they are provided at their top-most left-most positions is correct.
 
 ## Validating the Input
 The first step was to validate the input. Tetrominoes needed to be passed into our program as a file in the following format.
 
-![](basic_input.png)
+![](resources/basic_input.png)
 
 After writing the basic validation such as checking if the newlines were in the right place, we moved on to the more difficult checks. Specifically, we needed to validate the individual tetromino pieces:
 
-![](valid&invalid.png)
+![](resources/valid&invalid.png)
 
 Although we had a complete list of all 19 valid tetrominoes, checking every piece against that list isn’t efficient so we had to come up with a way to validate blocks. After discussing several different ideas, we decided the easiest implementation was to count the total number of sides touching:
 
-![](vci.png)
+![](resources/vci.png)
 
 If we find a single character with zero adjacent blocks, we can discard the tetromino input immediately. However, a more complicated case is the invalid piece pictured in dark purple above. Each piece is touching another piece, and yet it is does not fit the definition of a tetromino. As long as there are 6 sides total touching between the characters, we can be sure that the input piece is, in fact, a valid tetromino.
 Once we validated the tetrominoes, we were ready to start placing them on a board.
@@ -39,7 +39,7 @@ To come up with an algorithm to solve the board, we tried manually solving a few
 2. If the board is full and a solution has not been found, undo the last piece placed on the board and try a different position for it. Repeat until all possible positions for all tetromino pieces have been tried.
 3. If all possible solutions on a board have been tried, increase the size of the board and start over with placing the first tetromino. Note that the smallest possible board size is 2x2 as defined by the square tetromino by itself.
 
-![](ptpg.png)
+![](resources/ptpg.png)
 
  ## Future Opportunities & Optimizations
 While our solution could solve 1–8 tetromino shapes in 0.00 seconds, it got exponentially slower with each additional piece and became unwieldy long with 10+ pieces.
